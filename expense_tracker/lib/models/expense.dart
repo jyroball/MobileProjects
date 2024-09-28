@@ -1,5 +1,9 @@
 //package to get unique id parameters like a GUID value
+import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
+import 'package:intl/intl.dart';
+
+final formatter = DateFormat.yMd();
 
 //utility object to generate a unique id
 const uuid = Uuid();
@@ -11,6 +15,13 @@ enum Category {
   leisure,
   work
 }
+
+const categoryIcon = {
+  Category.food : Icons.fastfood_outlined,
+  Category.travel : Icons.airplane_ticket_outlined,
+  Category.leisure : Icons.shopping_bag_outlined,
+  Category.work : Icons.workspaces_outlined,
+};
 
 class Expense {
 
@@ -27,4 +38,7 @@ class Expense {
   final DateTime date;
   final Category category;
 
+  String get formattedDate {
+    return formatter.format(date);
+  }
 }

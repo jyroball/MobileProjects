@@ -9,11 +9,11 @@ void main() {
     MaterialApp(
       theme: ThemeData().copyWith(
         colorScheme: kColorScheme,
-        appBarTheme: AppBarTheme().copyWith(
+        appBarTheme: const AppBarTheme().copyWith(
           backgroundColor: kColorScheme.onPrimaryContainer,
           foregroundColor: kColorScheme.primaryContainer,
         ),
-        cardTheme: CardTheme().copyWith(
+        cardTheme: const CardTheme().copyWith(
             color: kColorScheme.secondaryContainer,
             margin: const EdgeInsets.symmetric(
               horizontal: 16,
@@ -31,6 +31,11 @@ void main() {
             fontWeight: FontWeight.bold,
             color: kColorScheme.onSecondaryContainer,
             fontSize: 26,
+          ),
+          titleMedium: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: kColorScheme.onSecondaryContainer,
+            fontSize: 16,
           ),
         ),
       ),

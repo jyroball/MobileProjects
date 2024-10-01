@@ -1,8 +1,9 @@
-
+import 'package:http/http.dart' as http;    //using "as" bundles package to object of "http"
 import 'package:flutter/material.dart';
 import 'package:shopping_list/data/categories.dart';
 import 'package:shopping_list/models/category.dart';
 import 'package:shopping_list/models/grocery_item.dart';
+import 'dart:convert';  //converts objects to json dart package
 
 class NewItem extends StatefulWidget {
   const NewItem({super.key});
@@ -23,12 +24,27 @@ class _NewItemState extends State<NewItem> {
     //runs all validate functions in Forms
     if(_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
+      final url = Uri.https('flutter-practice-58b62-default-rtdb.firebaseio.com', 'shopping-list.json');
+      http.post(
+        url, 
+        headers: {
+          'Content-Type' : 'application/json'
+        }, 
+        body: json.encode(
+          {
+            'name': _enteredName, 
+            'quantity': _enteredQuantity, 
+            'category': _selectedCategory.title,
+          },
+        ),
+      );
+      /*
       Navigator.of(context).pop(GroceryItem(
         id: DateTime.now().toString(), 
         name: _enteredName, 
         quantity: _enteredQuantity, 
         category: _selectedCategory
-      ));
+      ));*/
     }
   }
   

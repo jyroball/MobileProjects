@@ -28,21 +28,20 @@ class _AuthScreenState extends State<AuthScreen> {
 
     _formKey.currentState!.save();
 
-    //log user in if account in databse
-    if(_isLogin) {
-      //log user in
+    try{
+      //log user in if account in databse
+      if(_isLogin) {
+          final userCredentials = await _firebase.signInWithEmailAndPassword(email: _enteredEmail, password: _enteredPassword);
+      }
+      //sign user up if no account
+      else {
+        //method to make email and pass
+          final userCredentials = await _firebase.createUserWithEmailAndPassword(email: _enteredEmail, password: _enteredPassword);
+      }
     }
-    //sign user up if no account
-    else {
-      //method to make email and pass
-      try {
-        final userCredentials = await _firebase.createUserWithEmailAndPassword(email: _enteredEmail, password: _enteredPassword);
-      }
-      on FirebaseAuthException catch (error) {
-        ScaffoldMessenger.of(context).clearSnackBars();
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.message ?? 'Authentication Error')));
-      }
-      
+    on FirebaseAuthException catch (error) {
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.message ?? 'Authentication Error')));
     }
 
   }

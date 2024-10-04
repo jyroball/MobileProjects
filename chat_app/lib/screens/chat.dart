@@ -3,6 +3,13 @@ import 'package:chat_app/widget/new_message.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+/*
+
+  ADD Push noptification function in this file, but do it in later date
+
+*/
+
+
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
 
